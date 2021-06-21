@@ -1,0 +1,28 @@
+public with sharing class ContractEndDateAdapterTriggerHandler extends TriggerHandler{
+	
+	public ContractEndDateAdapterTriggerHandler() {
+	}
+	
+	public override void afterInsert() {
+		Set<Id> cons = new Set<Id>();
+		for (SBQQ__Subscription__c sub :Trigger.new) {
+			cons.add(sub.SBQQ__Contract__c);
+		}
+		if(cons.size()>0){
+			ContractEndDateAdapterController.updateEndDateContract(cons);
+			UPDATE conts;
+		}     
+	}
+	public override void afterUpdate() {
+		Set<Id> cons = new Set<Id>();
+		for (SBQQ__Subscription__c sub :Trigger.new) {
+			cons.add(sub.SBQQ__Contract__c);
+		}
+		if(cons.size()>0){
+			ContractEndDateAdapterController.updateEndDateContract(cons);
+			UPDATE conts;
+		}     
+	}
+
+
+}
